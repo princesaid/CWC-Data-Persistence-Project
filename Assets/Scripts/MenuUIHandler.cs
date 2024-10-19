@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MenuUIHandler : MonoBehaviour
 {
+    public TextMeshProUGUI playerNameInput;
+    public TextMeshProUGUI playerName;
     // Start is called before the first frame update
     void Start()
     {
+        if (MainManager.Instance != null){
+
+            playerName.text = MainManager.Instance.playerName;
+
+        }
 
     }
 
@@ -20,6 +28,7 @@ public class MenuUIHandler : MonoBehaviour
 
     public void StartNew()
     {
+        MainManager.Instance.playerName = playerNameInput.text;        
         SceneManager.LoadScene("Main");
     }
 
@@ -27,5 +36,8 @@ public class MenuUIHandler : MonoBehaviour
     {
         EditorApplication.ExitPlaymode();
         Application.Quit();
+    }
+    public void MenuButton(){
+        SceneManager.LoadScene("Menu");
     }
 }
